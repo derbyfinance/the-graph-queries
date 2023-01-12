@@ -75,8 +75,6 @@ export function createMarketDataQueryMessari({ days, market, timestamp }) {
         dailySupplySideRevenueUSD
         dailyProtocolSideRevenueUSD
         dailyTotalRevenueUSD
-        dailySupplySideRevenueUSD
-        dailyProtocolSideRevenueUSD
         dailyBorrowUSD
         exchangeRate
         rewardTokenEmissionsUSD
@@ -85,13 +83,41 @@ export function createMarketDataQueryMessari({ days, market, timestamp }) {
   }
 }
 
-export function createGetMarketsQueryMessari() {
+
+export function createVaultDataQueryMessari({ days, market, timestamp }) {
+  return {
+    operationName: 'getVaults',
+    query: `
+    query getVaults {
+      vaultDailySnapshots (
+        first: ${days},
+        where: {
+            vault: "${market}", 
+            timestamp_gte: ${timestamp}
+        }
+      ) {
+        timestamp
+        blockNumber
+        totalValueLockedUSD
+        dailySupplySideRevenueUSD
+        dailyProtocolSideRevenueUSD
+        dailyTotalRevenueUSD
+        pricePerShare
+        rewardTokenEmissionsUSD
+      }
+    }`
+  }
+}
+
+export function createGetMarketsQueryMessari(markets) {
   return {
     operationName: 'getMarkets',
     query: `
     query getMarkets {
-      markets (
-        where: { }
+      ${markets} (
+        where: {
+          totalValueLockedUSD_gt: 10000
+         }
       ) {
         id
         name

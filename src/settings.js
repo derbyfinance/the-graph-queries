@@ -10,9 +10,13 @@ export const graphUrl = {
   aaveV2Ether: messariUrl + 'aave-v2-ethereum',
   aaveV2Avalanche: messariUrl + 'aave-v2-avalanche',
   aaveV3Arbitrum: messariUrl + 'aave-v3-arbitrum',
-  aaveV3Avalanche: messariUrl + 'aave-v3-avalanche',
   aaveV3Polygon: messariUrl + 'aave-v3-polygon',
-  aaveV3Optimism: messariUrl + 'aave-v3-optimism'
+  aaveV3Optimism: messariUrl + 'aave-v3-optimism',
+  compoundV2Ether: messariUrl + 'compound-v2-ethereum',
+  compoundV3Ether: messariUrl + 'compound-v3-ethereum',
+  yearnV2Ether: messariUrl + 'yearn-v2-ethereum',
+  yearnV2Arbitrum: messariUrl + 'yearn-v2-arbitrum',
+  beefyArbitrum: messariUrl + 'beefy-finance-arbitrum'
 }
 
 export const filename = "./dexPoolData.csv";
@@ -48,7 +52,8 @@ export const columnsLending = [
   "protocol",
   "chain",
   "market",
-  "id",
+  "name",
+  "inputToken",
   "timestamp",
   "blockNumber",
   "totalValueLockedUSD",
@@ -62,7 +67,4 @@ export const columnsLending = [
   "rewardToken_2",
   "rewardTokenEmissionsUSD_1",
   "rewardTokenEmissionsUSD_2",
-  "rateBorrowerStable",
-  "rateBorrowerVariable",
-  "rateLenderVariable",
 ];
